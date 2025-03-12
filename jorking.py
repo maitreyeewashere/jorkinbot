@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 from discord.ext import *
 
-# Replace with your regenerated bot token
+
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
@@ -25,7 +25,7 @@ def transform(sentence):
 
         #print(verb, action)
 
-        # Verb modification improvements
+    
         if verb.endswith('e'):
             verb = verb[:-1] + 'in\''
         else:
@@ -38,15 +38,15 @@ def transform(sentence):
 
 @client.event
 async def on_message(message):
-    # Avoid responding to the bot's own messages
+    
     if message.author == client.user:
         return
 
-    # Attempt to transform the sentence
+    
     transformed = transform(message.content)
     
     if transformed != message.content:
         await message.channel.send(transformed)
 
-# Run the bot
+
 client.run(TOKEN)
